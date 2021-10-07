@@ -87,13 +87,7 @@ getRandomFloat(0, 0, 3);
 
 const generateAvatarPath = () => {
   const num = getRandomFloor(1, 10);
-  //const avatarId;
   const avatarId = num < 10 ? `0${num}` : num;
-  // if (num < 10) {
-  // avatarId = `0${num}`;
-  // } else {
-  // avatarId = num;
-  // };
   return `img/avatars/user${avatarId}.png`;
 };
 
