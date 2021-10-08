@@ -1,16 +1,14 @@
-
-
 // Задание 4-1
 
 const ADS_COUNT = 10;
 
 const TITLE = [
-  'Лучшая квартирка для тебя и твоего кота!',
-  'Квартира где не страшно шуметь всю ночь!',
-  'Уголок в самом спокойном доме района!',
-  'Для тебя и всех знакомых кошечек!',
-  'Милая уютная комнатка с видом на самое большое ПУХТО в городе!',
-  'Идеальное место если у Вас накопились крупные долги!',
+  'Лучшая квартира для командировок рядом с вокзалом.',
+  'Студия с видом на набережную где не страшно шуметь всю ночь!',
+  'Комната в самом спокойном доме района',
+  'Студия в новостройке на 3000 квартир.',
+  'Квартира рядом с парком.',
+  'Милая уютная комнатка с видом на самое красивое пухто в городе.',
 ];
 
 const TYPE = [
@@ -37,11 +35,13 @@ const FEATURES = [
 ];
 
 const DESCRIPTION = [
-  'Уютно как на теплотрассе!',
-  'Дороже не придумаешь!',
-  'Почти как картонная коробка!',
-  'Тут есть единственный уникальный золотой унитаз в городе!',
-  'Очень чисто и без паразитов, но на всякитй случай рекомендуется прихватить с собой парочку балончиков с ароматом RAID!',
+  'Уютно как на теплотрассе.',
+  'Дешевле не найдете!',
+  'Почти как картонная коробка.',
+  'Тут есть  уникальный и единственный золотой унитаз в городе.',
+  'Очень чисто и без паразитов, но лучше прихватите с собой парочку балончиков с ароматом RAID.',
+  'Идеальное место если у Вас накопились крупные долги.',
+  'Для тебя и всех знакомых кошечек.',
 ];
 
 
@@ -52,6 +52,10 @@ const PHOTOS = [
 ];
 
 // вспомогательные функции
+
+function shuffle(array) {
+  return array.slice().sort(() => Math.random() - 0.5);
+}
 
 // Генерация чисел
 
@@ -67,7 +71,6 @@ function getRandomFloor(min, max) {
   }
   return Math.floor(Math.random() * (max-min + 1) + min);
 }
-getRandomFloor(0, 101);
 
 function getRandomFloat(min, max, decimalPlaces) {
   if (min < 0 || max < 0) {
@@ -81,15 +84,36 @@ function getRandomFloat(min, max, decimalPlaces) {
   }
   return parseFloat((Math.random() * (max - min) + min).toFixed(decimalPlaces));
 }
-getRandomFloat(0, 0, 3);
 
-// Генерация пути аватара
+// Генерация пути аватара 1 - рандомное не верно!
 
-const generateAvatarPath = () => {
-  const num = getRandomFloor(1, 10);
-  const avatarId = num < 10 ? `0${num}` : num;
-  return `img/avatars/user${avatarId}.png`;
+// const generateAvatarPath = () => {
+//   const num = getRandomFloor(1, 10);
+//   const avatarId = num < 10 ? `0${num}` : num;
+//   return `img/avatars/user${avatarId}.png`;
+// };
+
+// Второй вариант 2 - splice / push - оптитмизация - ГОТОВО
+
+const generateAvatarPathArray = () => {
+  const array = [];
+  for (let num = 1; num <= ADS_COUNT; num++) {
+    if (num < 10) {
+      num = `0${num}`;
+    }
+    array.push(`img/avatars/user${num}.png`);
+  }
+  return shuffle(array);
 };
+
+const avatarPathArray = generateAvatarPathArray();
+
+function getUniqueAvatarPath () {
+  const out = avatarPathArray[0];
+  avatarPathArray.splice(0, 1);
+  avatarPathArray.push(out);
+  return avatarPathArray[0];
+}
 
 // Генерация координат
 
@@ -108,10 +132,6 @@ function getRandomElementFromArray (element) {
 
 // Рандомные  элементЫ (0 - макс) из массива
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
 function getRandomElementsFromArray (elements) {
   const shuffled = shuffle(elements);
   return shuffled.slice(0, getRandomFloor(0, shuffled.length - 1));
@@ -123,7 +143,7 @@ const getRandomAdertisementsList = () => new Array(ADS_COUNT)
   .fill(null)
   .map (() => ({
     author: {
-      avatar : generateAvatarPath(),
+      avatar : getUniqueAvatarPath(),
     },
     offer : {
       title : getRandomElementFromArray(TITLE),
