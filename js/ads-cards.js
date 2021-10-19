@@ -27,7 +27,7 @@ const getAdvertisementMarks = () => {
   adsClone.querySelector('.popup__text--price').textContent = `${advertisementArray[0].offer.price } ₽/ночь`;
 
   adsClone.querySelector('.popup__type').textContent = HOUSE_TYPE[advertisementArray[0].offer.type];
-  adsClone.querySelector('.popup__text--capacity').textContent = `${advertisementArray[0].offer.rooms } комнаты для ${advertisementArray[0].offer.guests}`;
+  adsClone.querySelector('.popup__text--capacity').textContent = `${advertisementArray[0].offer.rooms } комнаты для ${advertisementArray[0].offer.guests} гостей`;
   adsClone.querySelector('.popup__text--time').textContent = `Заезд после ${ advertisementArray[0].offer.checkin}, выезд до ${ advertisementArray[0].offer.checkout}`;
 
   const adsFeatures = advertisementArray[0].offer.features;
