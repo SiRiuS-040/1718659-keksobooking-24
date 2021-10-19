@@ -2,7 +2,7 @@ import {ADS_COUNT, TITLE, TYPE, TIME_CHECKIN_CHECKOUT, FEATURES, DESCRIPTION, PH
 import {getRandomFloor} from './util.js';
 import {getUniqueAvatarPath} from './get-avatar-path.js';
 import {generatetCoordinates} from './generate-coordinates.js';
-import {getRandomElementFromArray} from './get-1-random-element.js';
+import {getRandomElementFromArray} from './get-one-random-element.js';
 import {getRandomElementsFromArray} from './get-random-elements.js';
 
 // Итоговая сборка объявлений
