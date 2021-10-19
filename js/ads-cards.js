@@ -68,4 +68,4 @@ const getAdvertisementMarks = () => {
   similarAdsList.appendChild(adsClone);
 };
 
-getAdvertisementMarks();
+export {getAdvertisementMarks};
