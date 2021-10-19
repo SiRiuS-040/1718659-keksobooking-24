@@ -21,7 +21,7 @@ const advertisementArray = getRandomAdertisementsList();
 // console.log(similarAdsList);
 
 // console.log(advertisementArray);
-// console.log(advertisementArray[0]);
+console.log(advertisementArray[0]);
 
 const getAdvertisementMarks = () => {
   const adsClone = popup.cloneNode(true);
@@ -36,13 +36,14 @@ const getAdvertisementMarks = () => {
   const adsFeatures = advertisementArray[0].offer.features;
 
   const feturesContainer = adsClone.querySelector('.popup__features');
-  const featureList = feturesContainer.querySelectorAll('popup__feature');
+  const featureList = feturesContainer.querySelectorAll('.popup__feature');
 
   featureList.forEach((featureListItem) => {
 
     const isChecked = adsFeatures.some(
-      (adsFeature) => featureListItem.classList.contans(`popup__feature--${adsFeature}`),
+      (adsFeature) => featureListItem.classList.contains(`popup__feature--${  adsFeature}`),
     );
+
     if (!isChecked) {
       featureListItem.remove();
     }
