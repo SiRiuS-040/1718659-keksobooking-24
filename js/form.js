@@ -1,5 +1,3 @@
-// 8-1
-
 const adForm = document.querySelector('.ad-form');
 
 // Заголовок минимум 30 символов, максимум 100.
@@ -82,9 +80,9 @@ const adGuestsInput = adForm.querySelector('#capacity');
 
 const validateCapacity = () => {
   if (adGuestsInput.value === '0' && adRoomsInput.value !== '100') {
-    adGuestsInput.setCustomValidity('Такое жилье только для гостей!');
+    adGuestsInput.setCustomValidity('Выбранное количество комнат только для гостей!');
   }  else if (adRoomsInput.value === '100' && adGuestsInput.value > 0) {
-    adGuestsInput.setCustomValidity('Здесь нельзя размещать гостей!');
+    adGuestsInput.setCustomValidity('В данных помещеиях нельзя размещать гостей!');
   } else if (adGuestsInput.value > adRoomsInput.value) {
     adGuestsInput.setCustomValidity('Слишком много гостей');
   } else {
@@ -101,9 +99,34 @@ adGuestsInput.addEventListener('input', () => {
   validateCapacity();
 });
 
+// 8-2
+
+// Время заезда - выезда
+
+const adTimeinInput = adForm.querySelector('#timein');
+const adTimeoutInput = adForm.querySelector('#timeout');
+
+const setTimein = () => {
+  adTimeoutInput.value = adTimeinInput.value;
+};
+
+const setTimeout = () => {
+  adTimeinInput.value = adTimeoutInput.value;
+};
+
+adTimeinInput.addEventListener('input', () => {
+  setTimein();
+});
+
+adTimeoutInput.addEventListener('input', () => {
+  setTimeout();
+});
+
 // Проверка при загрузке страницы.
 
 document.addEventListener('DOMContentLoaded', () => {
+  setTimein();
+  setTimeout();
   validateCapacity();
   validatePrice();
   validateTitle();
