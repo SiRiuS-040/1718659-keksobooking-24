@@ -10,7 +10,7 @@ const HOUSE_TYPE = {
   hotel: 'Отель',
 };
 
-const similarAdsList = document.querySelector('#map-canvas');
+// const similarAdsList = document.querySelector('#map-canvas');
 const similarAdsTemplate = document.querySelector('#card').content;
 const popup = similarAdsTemplate.querySelector('.popup');
 
@@ -21,7 +21,9 @@ const advertisementArray = getRandomAdertisementsList();
 // console.log(advertisementArray[0]);
 
 const getAdvertisementMarks = () => {
+
   const adsClone = popup.cloneNode(true);
+
   adsClone.querySelector('.popup__title').textContent = advertisementArray[0].offer.title;
   adsClone.querySelector('.popup__text--address').textContent = advertisementArray[0].offer.address;
   adsClone.querySelector('.popup__text--price').textContent = `${advertisementArray[0].offer.price } ₽/ночь`;
@@ -65,7 +67,7 @@ const getAdvertisementMarks = () => {
   });
 
   adsClone.querySelector('.popup__avatar').src = advertisementArray[0].author.avatar;
-  similarAdsList.appendChild(adsClone);
+  // similarAdsList.appendChild(adsClone);
 };
 
-export {getAdvertisementMarks};
+export {advertisementArray, getAdvertisementMarks};

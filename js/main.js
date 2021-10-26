@@ -1,6 +1,9 @@
 import './form.js';
 import {activateForm, deactivateForm} from './switch.js';
-import './map.js';
+import {createMarker} from './map.js';
 
 deactivateForm();
+
+createMarker();
+
 activateForm();

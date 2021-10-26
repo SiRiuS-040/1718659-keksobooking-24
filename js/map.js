@@ -1,6 +1,6 @@
-import {getRandomAdertisementsList} from './get-ads-list.js';
+// import {getRandomAdertisementsList} from './get-ads-list.js';
 
-import {getAdvertisementMarks} from './ads-cards.js';
+import {advertisementArray, getAdvertisementMarks} from './ads-cards.js';
 
 import {adForm} from './form.js';
 
@@ -11,7 +11,7 @@ const DEFAULT_COORDINATES = {
   lng: 139.77059,
 };
 
-const ZOOM = 10;
+const ZOOM = 11;
 
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -67,30 +67,28 @@ mainPinMarker.on('moveend', (evt) => {
 
 // 10-1-5
 
-// const adList = getRandomAdertisementsList();
+// console.log(advertisementArray);
 
-// const markerGroup = L.layerGroup().addTo(map);
+const markerGroup = L.layerGroup().addTo(map);
 
-// const marks = getAdvertisementMarks();
+const createMarker = () => {
+  for (let i = 0; i < advertisementArray.length; i++) {
+    const lat = advertisementArray[i].location.lat;
+    const lng = advertisementArray[i].location.lng;
 
-// const createMarker = (points) => {
-//   for (let i = 0; i < points.length; i++) {
-//     const lat = points[i].location.lat;
-//     const lng = points[i].location.lng;
-//     const icon = L.icon(AD_ICON);
+    const icon = L.icon(AD_ICON);
 
-//     const marker = L.marker(
-//       {
-//         lat,
-//         lng,
-//       },
-//       {
-//         icon,
-//       },
-//     );
-//     marker.addTo(markerGroup)
-//       .bindPopup(getAdvertisementMarks(points[i]));
-//   }
-// };
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        icon,
+      },
+    );
+    marker.addTo(markerGroup);
+  }
+};
 
-// createMarker();
+export {createMarker};
