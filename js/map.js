@@ -1,10 +1,7 @@
-// import {getRandomAdertisementsList} from './get-ads-list.js';
-
 import {advertisementArray, getAdvertisementMarks} from './ads-cards.js';
-
 import {adForm} from './form.js';
 
-const   TO_FIXED_RANGE = 5;
+const TO_FIXED_RANGE = 5;
 
 const DEFAULT_COORDINATES = {
   lat: 35.66637,
@@ -67,22 +64,12 @@ mainPinMarker.on('moveend', (evt) => {
 
 // 10-1-5
 
-// console.log(advertisementArray);
-
 const markerGroup = L.layerGroup().addTo(map);
 
-const marks = getAdvertisementMarks();
-
-
-console.log(marks);
-
-
-// console.log(getAdvertisementMarks[1]);
-
-const createMarker = () => {
+const createMarker = (adPoints) => {
   for (let i = 0; i < advertisementArray.length; i++) {
-    const lat = advertisementArray[i].location.lat;
-    const lng = advertisementArray[i].location.lng;
+    const lat = adPoints[i].location.lat;
+    const lng = adPoints[i].location.lng;
 
     const icon = L.icon(AD_ICON);
 
@@ -97,7 +84,7 @@ const createMarker = () => {
     );
     marker
       .addTo(markerGroup)
-      .bindPopup(getAdvertisementMarks());
+      .bindPopup(getAdvertisementMarks(adPoints[i]));
   }
 };
 
