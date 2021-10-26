@@ -71,6 +71,14 @@ mainPinMarker.on('moveend', (evt) => {
 
 const markerGroup = L.layerGroup().addTo(map);
 
+const marks = getAdvertisementMarks();
+
+
+console.log(marks);
+
+
+// console.log(getAdvertisementMarks[1]);
+
 const createMarker = () => {
   for (let i = 0; i < advertisementArray.length; i++) {
     const lat = advertisementArray[i].location.lat;
@@ -87,7 +95,9 @@ const createMarker = () => {
         icon,
       },
     );
-    marker.addTo(markerGroup);
+    marker
+      .addTo(markerGroup)
+      .bindPopup(getAdvertisementMarks());
   }
 };
 

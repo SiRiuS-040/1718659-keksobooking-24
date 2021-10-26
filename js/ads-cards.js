@@ -68,6 +68,8 @@ const getAdvertisementMarks = () => {
 
   adsClone.querySelector('.popup__avatar').src = advertisementArray[0].author.avatar;
   // similarAdsList.appendChild(adsClone);
+
+  return adsClone;
 };
 
 export {advertisementArray, getAdvertisementMarks};
