@@ -8,7 +8,6 @@ const HOUSE_TYPE = {
   hotel: 'Отель',
 };
 
-// const similarAdsList = document.querySelector('#map-canvas');
 const similarAdsTemplate = document.querySelector('#card').content;
 const popup = similarAdsTemplate.querySelector('.popup');
 
@@ -54,7 +53,6 @@ const getAdvertisementMarks = (dataArray) => {
     adsPhotos.appendChild(img);
   });
   adsClone.querySelector('.popup__avatar').src = dataArray.author.avatar;
-  // similarAdsList.appendChild(adsClone); // подключил карты.
 
   return adsClone;
 };
