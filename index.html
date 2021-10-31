@@ -5,6 +5,11 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
   <title>Кексобукинг</title>
 </head>
 <body>
@@ -16,10 +21,10 @@
     </div>
 
     <!-- Карта объявлений -->
-    <section class="map">
+    <section class="map" >
 
       <!-- Блок для вставки карты -->
-      <div class="map__canvas" id="map-canvas"></div>
+      <div class="map__canvas" id="map-canvas" style="width: 1200px; height: 700px;"></div>
 
       <!-- Фильтрация объявлений -->
       <div class="map__filters-container">
@@ -63,7 +68,7 @@
             <label class="map__feature map__feature--elevator" for="filter-elevator">Лифт</label>
             <input type="checkbox" name="features" value="conditioner" id="filter-conditioner" class="map__checkbox visually-hidden">
             <label class="map__feature map__feature--conditioner" for="filter-conditioner">Кондиционер</label>
-           </fieldset>
+          </fieldset>
         </form>
       </div>
     </section>
@@ -91,7 +96,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text" required>
+          <input id="address" name="address" type="text" readonly>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -229,6 +234,10 @@
       <button type="button" class="error__button">Попробовать снова</button>
     </div>
   </template>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 
   <script type="module" src="/js/main.js"></script>
 </body>

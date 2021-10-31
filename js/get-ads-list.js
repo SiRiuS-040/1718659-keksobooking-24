@@ -19,7 +19,7 @@ function getRandomAdertisementsList() {
         address: `${generatetCoordinates().lat}, ${generatetCoordinates().lng}`,
         price: getRandomFloor(0, 50000),
         type: getRandomElementFromArray(TYPE),
-        rooms: getRandomFloor(1, 100),
+        rooms: getRandomFloor(1, 3),
         guests: getRandomFloor(0, 3),
         checkin: getRandomElementFromArray(TIME_CHECKIN_CHECKOUT),
         checkout: getRandomElementFromArray(TIME_CHECKIN_CHECKOUT),
@@ -30,7 +30,5 @@ function getRandomAdertisementsList() {
       location: generatetCoordinates(),
     }));
 }
-
-// getRandomAdertisementsList();
 
 export {getRandomAdertisementsList};

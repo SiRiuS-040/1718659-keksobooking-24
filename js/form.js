@@ -131,3 +131,5 @@ document.addEventListener('DOMContentLoaded', () => {
   validatePrice();
   validateTitle();
 });
+
+export {adForm};

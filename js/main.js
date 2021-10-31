@@ -1,10 +1,11 @@
-import {getAdvertisementMarks} from './ads-cards.js';
-
-import {activateForm, deactivateForm} from './switch.js';
-
+import {advertisementArray} from './ads-cards.js';
 import './form.js';
-
-getAdvertisementMarks();
+import {activateForm, deactivateForm} from './switch.js';
+import {createMarker} from './map.js';
 
 deactivateForm();
+
+createMarker(advertisementArray);
+
 activateForm();
+
