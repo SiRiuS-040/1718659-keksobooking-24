@@ -1,6 +1,12 @@
 import {getAdvertisementMarks} from './ads-cards.js';
-import {adForm} from './form.js';
+import {activateForm, deactivateForm} from './switch.js';
+import {getData} from './api.js';
 
+deactivateForm();
+
+const SIMILAR_ADS_COUNT = 10;
+const adForm = document.querySelector('.ad-form');
+const addressInput = adForm.querySelector('#address');
 const TO_FIXED_RANGE = 5;
 
 const DEFAULT_COORDINATES = {
@@ -19,13 +25,13 @@ const MAIN_ICON = {
   iconAnchor: [26, 52],
 };
 
+const mainPinIcon = L.icon(MAIN_ICON);
+
 const AD_ICON = {
   iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 };
-
-// Инициализация карты
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -39,10 +45,6 @@ L.tileLayer(
   },
 ).addTo(map);
 
-// 10-1-3 Главная метка
-
-const mainPinIcon = L.icon(MAIN_ICON);
-
 const mainPinMarker = L.marker(
   DEFAULT_COORDINATES,
   {
@@ -53,16 +55,10 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
-// 10-1-4 Координаты в в адресной строке
-
-const addressInput = adForm.querySelector('#address');
-
 mainPinMarker.on('moveend', (evt) => {
   const { lat, lng } = evt.target.getLatLng();
   addressInput.value = `${lat.toFixed(TO_FIXED_RANGE)}, ${lng.toFixed(TO_FIXED_RANGE)}`;
 });
-
-// 10-1-5
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -70,9 +66,7 @@ const createMarker = (adPoints) => {
   for (let i = 0; i < adPoints.length; i++) {
     const lat = adPoints[i].location.lat;
     const lng = adPoints[i].location.lng;
-
     const icon = L.icon(AD_ICON);
-
     const marker = L.marker(
       {
         lat,
@@ -88,4 +82,19 @@ const createMarker = (adPoints) => {
   }
 };
 
-export {createMarker};
+const activateAfterMapLoad = () => {
+  activateForm();
+  getData((advertisements) => {
+    createMarker(advertisements.slice(0, SIMILAR_ADS_COUNT));
+  });
+};
+
+map.on('load', activateAfterMapLoad());
+
+const resetMarkersAndMap = () => {
+  mainPinMarker.setLatLng(DEFAULT_COORDINATES);
+  map.setView(DEFAULT_COORDINATES, ZOOM);
+  map.closePopup();
+};
+
+export {createMarker, resetMarkersAndMap};

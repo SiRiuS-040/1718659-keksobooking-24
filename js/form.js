@@ -1,9 +1,17 @@
-const adForm = document.querySelector('.ad-form');
+import {resetMarkersAndMap} from './map.js';
+import {sendData} from './api.js';
+import {makePopupMessage, errorMessage} from './popup.js';
 
-// Заголовок минимум 30 символов, максимум 100.
+const adForm = document.querySelector('.ad-form');
+const adTypeInput = adForm.querySelector('#type');
+const adPriceInput = adForm.querySelector('#price');
+const adRoomsInput = adForm.querySelector('#room_number');
+const adGuestsInput = adForm.querySelector('#capacity');
+const resetButton = adForm.querySelector('.ad-form__reset');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
+
 const adTitleInput = adForm.querySelector('#title');
 adTitleInput.minLength = ('MIN_TITLE_LENGTH');
 
@@ -23,8 +31,6 @@ adTitleInput.addEventListener('input', () => {
   validateTitle();
 });
 
-// Цена за ночь/
-
 const HOUSING__MIN_PRICE = {
   bungalow: 0,
   flat: 1000,
@@ -32,11 +38,6 @@ const HOUSING__MIN_PRICE = {
   house: 5000,
   palace: 10000,
 };
-
-// Цена от типа жилья
-
-const adTypeInput = adForm.querySelector('#type');
-const adPriceInput = adForm.querySelector('#price');
 
 let minPrice = HOUSING__MIN_PRICE[adTypeInput.value];
 const MAX_PRICE = 1000000;
@@ -73,11 +74,6 @@ adPriceInput.addEventListener('input', () => {
   validatePrice();
 });
 
-// Количество комнат и количество мест
-
-const adRoomsInput = adForm.querySelector('#room_number');
-const adGuestsInput = adForm.querySelector('#capacity');
-
 const validateCapacity = () => {
   if (adGuestsInput.value === '0' && adRoomsInput.value !== '100') {
     adGuestsInput.setCustomValidity('Выбранное количество комнат только для гостей!');
@@ -98,10 +94,6 @@ adRoomsInput.addEventListener('input', () => {
 adGuestsInput.addEventListener('input', () => {
   validateCapacity();
 });
-
-// 8-2
-
-// Время заезда - выезда
 
 const adTimeinInput = adForm.querySelector('#timein');
 const adTimeoutInput = adForm.querySelector('#timeout');
@@ -132,4 +124,34 @@ document.addEventListener('DOMContentLoaded', () => {
   validateTitle();
 });
 
-export {adForm};
+// Действия с формой
+
+const clearForm = () => {
+  adForm.reset();
+};
+
+const setFormSubmit = (onSuccess) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => onSuccess(),
+      () => makePopupMessage(errorMessage),
+      new FormData(evt.target),
+    );
+  });
+};
+
+const resetForm = () => {
+  resetMarkersAndMap();
+  clearForm();
+};
+
+const clickOnReset = () => {
+  resetButton.addEventListener('click', () => {
+    resetForm();
+  });
+};
+
+clickOnReset();
+
+export {adForm, setFormSubmit, resetForm, clearForm};

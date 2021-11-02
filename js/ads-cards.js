@@ -1,4 +1,3 @@
-
 const HOUSE_TYPE = {
   flat: 'Квартира',
   bungalow: 'Бунгало',

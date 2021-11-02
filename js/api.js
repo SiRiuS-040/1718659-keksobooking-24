@@ -1,4 +1,6 @@
-const createLoader = (onSuccess, onError) => () => {
+import {makePopupMessage, successMessage, errorMessage, makeLoadErrorMessage} from './popup.js';
+
+const getData = (onSuccess, onError) => {
   fetch(
     'https://24.javascript.pages.academy/keksobooking/data',
     {
@@ -16,10 +18,23 @@ const createLoader = (onSuccess, onError) => () => {
     .then((data) => {
       onSuccess(data);
     })
-    .catch((err) => {
-      onError(err);
+    .catch(() => {
+      onError(makeLoadErrorMessage());
     });
 };
 
-export {createLoader};
+const sendData = (onSuccess, onFail, body) => {
+  fetch(
+    'https://24.javascript.pages.academy/keksobooking',
+    {
+      method: 'POST',
+      body,
+    },
+  ).then((response) => response.ok ? onSuccess(makePopupMessage(successMessage)) : onFail(makePopupMessage(errorMessage)),
+  )
+    .catch(() => {
+      onFail(makePopupMessage(errorMessage));
+    });
+};
 
+export {getData, sendData};
