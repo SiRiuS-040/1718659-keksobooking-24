@@ -1,4 +1,4 @@
-import {advertisementArray, getAdvertisementMarks} from './ads-cards.js';
+import {getAdvertisementMarks} from './ads-cards.js';
 import {adForm} from './form.js';
 
 const TO_FIXED_RANGE = 5;
@@ -67,7 +67,7 @@ mainPinMarker.on('moveend', (evt) => {
 const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (adPoints) => {
-  for (let i = 0; i < advertisementArray.length; i++) {
+  for (let i = 0; i < adPoints.length; i++) {
     const lat = adPoints[i].location.lat;
     const lng = adPoints[i].location.lng;
 

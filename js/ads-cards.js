@@ -1,4 +1,3 @@
-import {getRandomAdertisementsList} from './get-ads-list.js';
 
 const HOUSE_TYPE = {
   flat: 'Квартира',
@@ -11,8 +10,6 @@ const HOUSE_TYPE = {
 const similarAdsTemplate = document.querySelector('#card').content;
 const popup = similarAdsTemplate.querySelector('.popup');
 
-const advertisementArray = getRandomAdertisementsList();
-
 const getAdvertisementMarks = (dataArray) => {
   const adsClone = popup.cloneNode(true);
 
@@ -20,41 +17,65 @@ const getAdvertisementMarks = (dataArray) => {
   adsClone.querySelector('.popup__text--address').textContent = dataArray.offer.address;
   adsClone.querySelector('.popup__text--price').textContent = `${dataArray.offer.price } ₽/ночь`;
   adsClone.querySelector('.popup__type').textContent = HOUSE_TYPE[dataArray.offer.type];
-  adsClone.querySelector('.popup__text--capacity').textContent = `${dataArray.offer.rooms } комнаты для ${advertisementArray[0].offer.guests} гостей`;
-  adsClone.querySelector('.popup__text--time').textContent = `Заезд после ${ dataArray.offer.checkin}, выезд до ${ advertisementArray[0].offer.checkout}`;
+  adsClone.querySelector('.popup__text--capacity').textContent = `${dataArray.offer.rooms } комнаты для ${dataArray.offer.guests} гостей`;
+  adsClone.querySelector('.popup__text--time').textContent = `Заезд после ${ dataArray.offer.checkin}, выезд до ${ dataArray.offer.checkout}`;
+  adsClone.querySelector('.popup__avatar').src = dataArray.author.avatar;
 
-  const adsFeatures = dataArray.offer.features;
   const feturesContainer = adsClone.querySelector('.popup__features');
   const featureList = feturesContainer.querySelectorAll('.popup__feature');
 
-  featureList.forEach((featureListItem) => {
-    const isChecked = adsFeatures.some(
-      (adsFeature) => featureListItem.classList.contains(`popup__feature--${  adsFeature}`),
-    );
-    if (!isChecked) {
-      featureListItem.remove();
+  const getFeatures = () => {
+    const adsFeatures = dataArray.offer.features;
+
+    if (!adsFeatures) {
+      return feturesContainer.remove();
+    } else {
+      featureList.forEach((featureListItem) => {
+        const isChecked = adsFeatures.some(
+          (adsFeature) => featureListItem.classList.contains(`popup__feature--${  adsFeature}`),
+        );
+        if (!isChecked) {
+          featureListItem.remove();
+        }
+      });
     }
-  });
+  };
+
+  getFeatures();
+
   if (!dataArray.offer.description) {
     adsClone.querySelector('.popup__description').classList.add('visually-hidden');
   } else {
     adsClone.querySelector('.popup__description').textContent = dataArray.offer.description;
   }
 
-  const adsPhotos = adsClone.querySelector('.popup__photos');
-  adsPhotos.innerHTML = '';
+  const getPhotoes = () => {
+    const adsPhotos = dataArray.offer.photos;
+    const photoContainer = adsClone.querySelector('.popup__photos');
 
-  dataArray.offer.photos.forEach((photoItem) => {
-    const img = document.createElement('img');
-    img.classList.add('popup__photo');
-    img.src = photoItem;
-    img.height = 40;
-    img.width = 45;
-    adsPhotos.appendChild(img);
-  });
-  adsClone.querySelector('.popup__avatar').src = dataArray.author.avatar;
+    if (!adsPhotos) {
+      return photoContainer.remove();
+    } else {
+      photoContainer.innerHTML = '';
+
+      dataArray.offer.photos.forEach((photoItem) => {
+        const img = document.createElement('img');
+        img.classList.add('popup__photo');
+        img.src = photoItem;
+        img.height = 40;
+        img.width = 45;
+        photoContainer.appendChild(img);
+      });
+    }
+  };
+
+  getPhotoes();
 
   return adsClone;
 };
 
-export {advertisementArray, getAdvertisementMarks};
+const clearAdvertisementMarks = () => {
+  popup.innerHTML = '';
+};
+
+export {getAdvertisementMarks, clearAdvertisementMarks};
