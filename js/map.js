@@ -8,7 +8,7 @@ const DEFAULT_COORDINATES = {
   lng: 139.77059,
 };
 
-const ZOOM = 11;
+const ZOOM = 12;
 
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
