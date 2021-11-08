@@ -90,6 +90,6 @@ const onFilterReset = (cb) => filterForm.addEventListener('reset', () => {
   cb();
 });
 
-export {filterAndShow, onFilterChange, onFilterReset};
+export {filterAndShow, onFilterChange, onFilterReset, filterForm};
 
 
