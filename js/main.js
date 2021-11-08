@@ -1,23 +1,21 @@
 import {setFormSubmit, resetForm} from './form.js';
 import {makeLoadErrorMessage} from './popup.js';
+import {debounce} from './util.js';
 import './map.js';
 import './filter.js';
 import {getData} from './api.js';
 import {filterAndShow, onFilterChange, onFilterReset} from './filter.js';
 
-
-console.log('все очень плохо (((');
-
 setFormSubmit(resetForm);
 
 getData((data) => {
   filterAndShow(data);
-  onFilterChange(
+  onFilterChange(debounce(
     () => filterAndShow(data),
-  );
-  onFilterReset(
+  ));
+  onFilterReset(debounce(
     () => filterAndShow(data),
-  );
+  ));
 },
 
 makeLoadErrorMessage,

@@ -1,4 +1,3 @@
-
 import {createMarker} from './map.js';
 
 const filterForm = document.querySelector('.map__filters');
@@ -9,7 +8,6 @@ const guestsField = filterForm.querySelector('#housing-guests');
 
 const ADS_MAX = 10;
 const DEFAULT_VALUE = 'any';
-
 
 const PriceRange = {
   PRICE_LOW: {
@@ -26,19 +24,7 @@ const PriceRange = {
 
 const filterType = (object) => {
   const typeValue = typeField.value;
-  console.log(typeValue);
   return typeValue === object.offer.type || typeValue === DEFAULT_VALUE;
-};
-
-const filterPrice = (object) => {
-  const priceValue = priceField.value;
-  switch (priceValue) {
-    case 'low': return object.offer.price < PriceRange.PRICE_LOW.MAX;
-    case 'middle': return object.offer.price >= PriceRange.PRICE_MIDDLE.MIN && object.offer.price < PriceRange.PRICE_MIDDLE.MAX;
-    case 'high': return object.offer.price >= PriceRange.PRICE_HIGH.MIN;
-    case 'any': return true;
-    default: return false;
-  }
 };
 
 const filterRooms = (object) => {
@@ -61,7 +47,16 @@ const filterFeatures = (object) => {
   return featuresValues.length === filter.length;
 };
 
-//
+const filterPrice = (object) => {
+  const priceValue = priceField.value;
+  switch (priceValue) {
+    case 'low': return object.offer.price < PriceRange.PRICE_LOW.MAX;
+    case 'middle': return object.offer.price >= PriceRange.PRICE_MIDDLE.MIN && object.offer.price < PriceRange.PRICE_MIDDLE.MAX;
+    case 'high': return object.offer.price >= PriceRange.PRICE_HIGH.MIN;
+    case 'any': return true;
+    default: return false;
+  }
+};
 
 const filterAndShow = (advertisements) => {
   const getAllFilters = (object) => {
@@ -84,37 +79,15 @@ const filterAndShow = (advertisements) => {
       break;
     }
   }
-  console.log(filteredRents);
   createMarker(filteredRents);
 };
 
-//
-
 const onFilterChange = (cb) => filterForm.addEventListener('change', () => {
-
-
   cb();
 });
 
 const onFilterReset = (cb) => filterForm.addEventListener('reset', () => {
   cb();
-});
-
-filterForm.addEventListener('change', () => {
-  const typeValue = typeField.value;
-  const priceValue = priceField.value;
-  const roomsValue = roomsField.value;
-  const guestsValue = guestsField.value;
-
-  const selectedFeatures = Array.from(filterForm.querySelectorAll('#housing-features input:checked'));
-  const featuresValues = selectedFeatures.map((element) => element.value);
-
-  console.log(typeValue);
-  console.log(priceValue);
-  console.log(roomsValue);
-  console.log(guestsValue);
-  console.log(featuresValues);
-
 });
 
 export {filterAndShow, onFilterChange, onFilterReset};
