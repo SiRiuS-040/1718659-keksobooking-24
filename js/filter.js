@@ -88,7 +88,6 @@ const filterAndShow = (advertisements) => {
   createMarker(filteredRents);
 };
 
-
 //
 
 const onFilterChange = (cb) => filterForm.addEventListener('change', () => {
@@ -100,7 +99,6 @@ const onFilterChange = (cb) => filterForm.addEventListener('change', () => {
 const onFilterReset = (cb) => filterForm.addEventListener('reset', () => {
   cb();
 });
-
 
 filterForm.addEventListener('change', () => {
   const typeValue = typeField.value;

@@ -1,4 +1,4 @@
-import './form.js';
+import {setFormSubmit, resetForm} from './form.js';
 import {makeLoadErrorMessage} from './popup.js';
 import './map.js';
 import './filter.js';
@@ -7,6 +7,8 @@ import {filterAndShow, onFilterChange, onFilterReset} from './filter.js';
 
 
 console.log('все очень плохо (((');
+
+setFormSubmit(resetForm);
 
 getData((data) => {
   filterAndShow(data);
