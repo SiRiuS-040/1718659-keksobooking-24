@@ -2,6 +2,7 @@ import {resetMarkersAndMap} from './map.js';
 import {filterForm} from './filter.js';
 import {sendData} from './api.js';
 import {makePopupMessage, errorMessage} from './popup.js';
+import {resetImages} from './avatar.js';
 
 const adForm = document.querySelector('.ad-form');
 const adTypeInput = adForm.querySelector('#type');
@@ -115,8 +116,6 @@ adTimeoutInput.addEventListener('input', () => {
   setTimeout();
 });
 
-// Проверка при загрузке страницы.
-
 document.addEventListener('DOMContentLoaded', () => {
   setTimein();
   setTimeout();
@@ -124,9 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
   validatePrice();
   validateTitle();
 });
-
-// Действия с формой
-
 
 const setFormSubmit = (onSuccess) => {
   adForm.addEventListener('submit', (evt) => {
@@ -143,6 +139,7 @@ const resetForm = () => {
   adForm.reset();
   filterForm.reset();
   resetMarkersAndMap();
+  resetImages();
 };
 
 const clickOnReset = () => {
