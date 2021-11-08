@@ -1,4 +1,5 @@
 import {resetMarkersAndMap} from './map.js';
+import {filterForm} from './filter.js';
 import {sendData} from './api.js';
 import {makePopupMessage, errorMessage} from './popup.js';
 
@@ -126,9 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Действия с формой
 
-const clearForm = () => {
-  adForm.reset();
-};
 
 const setFormSubmit = (onSuccess) => {
   adForm.addEventListener('submit', (evt) => {
@@ -142,8 +140,9 @@ const setFormSubmit = (onSuccess) => {
 };
 
 const resetForm = () => {
+  adForm.reset();
+  filterForm.reset();
   resetMarkersAndMap();
-  clearForm();
 };
 
 const clickOnReset = () => {
@@ -154,4 +153,4 @@ const clickOnReset = () => {
 
 clickOnReset();
 
-export {adForm, setFormSubmit, resetForm, clearForm};
+export {adForm, setFormSubmit, resetForm};
