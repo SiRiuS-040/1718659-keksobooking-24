@@ -4,7 +4,6 @@ import {getData} from './api.js';
 
 deactivateForm();
 
-const SIMILAR_ADS_COUNT = 10;
 const adForm = document.querySelector('.ad-form');
 const addressInput = adForm.querySelector('#address');
 const TO_FIXED_RANGE = 5;
@@ -63,6 +62,7 @@ mainPinMarker.on('moveend', (evt) => {
 const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (adPoints) => {
+  markerGroup.clearLayers();
   for (let i = 0; i < adPoints.length; i++) {
     const lat = adPoints[i].location.lat;
     const lng = adPoints[i].location.lng;
@@ -85,7 +85,7 @@ const createMarker = (adPoints) => {
 const activateAfterMapLoad = () => {
   activateForm();
   getData((advertisements) => {
-    createMarker(advertisements.slice(0, SIMILAR_ADS_COUNT));
+    createMarker(advertisements);
   });
 };
 

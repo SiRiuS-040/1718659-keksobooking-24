@@ -84,7 +84,7 @@ const filterAndShow = (advertisements) => {
       break;
     }
   }
-
+  console.log(filteredRents);
   createMarker(filteredRents);
 };
 
