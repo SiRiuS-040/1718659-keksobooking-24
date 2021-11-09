@@ -6,6 +6,7 @@ import './filter.js';
 import {activateForm, deactivateForm} from './switch.js';
 import {getData} from './api.js';
 import {filterAndShow, onFilterChange, onFilterReset} from './filter.js';
+import './avatar.js';
 
 setFormSubmit(resetForm);
 
