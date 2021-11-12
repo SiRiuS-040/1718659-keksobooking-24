@@ -20,14 +20,14 @@ const getAdvertisementMarks = (dataArray) => {
   adsClone.querySelector('.popup__text--time').textContent = `Заезд после ${ dataArray.offer.checkin}, выезд до ${ dataArray.offer.checkout}`;
   adsClone.querySelector('.popup__avatar').src = dataArray.author.avatar;
 
-  const feturesContainer = adsClone.querySelector('.popup__features');
-  const featureList = feturesContainer.querySelectorAll('.popup__feature');
+  const featuresContainer = adsClone.querySelector('.popup__features');
+  const featureList = featuresContainer.querySelectorAll('.popup__feature');
 
   const getFeatures = () => {
     const adsFeatures = dataArray.offer.features;
 
     if (!adsFeatures) {
-      return feturesContainer.remove();
+      return featuresContainer.remove();
     } else {
       featureList.forEach((featureListItem) => {
         const isChecked = adsFeatures.some(

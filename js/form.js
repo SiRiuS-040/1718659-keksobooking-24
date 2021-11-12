@@ -100,25 +100,25 @@ adGuestsInput.addEventListener('input', () => {
 const adTimeinInput = adForm.querySelector('#timein');
 const adTimeoutInput = adForm.querySelector('#timeout');
 
-const setTimein = () => {
+const setTimeIn = () => {
   adTimeoutInput.value = adTimeinInput.value;
 };
 
-const setTimeout = () => {
+const setTimeOut = () => {
   adTimeinInput.value = adTimeoutInput.value;
 };
 
 adTimeinInput.addEventListener('input', () => {
-  setTimein();
+  setTimeIn();
 });
 
 adTimeoutInput.addEventListener('input', () => {
-  setTimeout();
+  setTimeOut();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimein();
-  setTimeout();
+  setTimeIn();
+  setTimeOut();
   validateCapacity();
   validatePrice();
   validateTitle();

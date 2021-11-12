@@ -60,14 +60,14 @@ const filterPrice = (object) => {
 
 const filterAndShow = (advertisements) => {
   const getAllFilters = (object) => {
-    const inputFiltres = [
+    const inputFilters = [
       filterType,
       filterPrice,
       filterRooms,
       filterGuests,
       filterFeatures,
     ];
-    return inputFiltres.every((input) => input(object));
+    return inputFilters.every((input) => input(object));
   };
 
   const filteredRents = [];

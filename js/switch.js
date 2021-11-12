@@ -1,5 +1,5 @@
 const advertisementForm = document.querySelector('.ad-form');
-const advertisementFormFieldsets = document.querySelectorAll('.ad-form__element');
+const advertisementFormFieldSets = document.querySelectorAll('.ad-form__element');
 const formFilters = document.querySelector('.map__filters');
 const formFilterFieldElements = formFilters.querySelectorAll('.map__filter');
 const formFilterField = formFilters.querySelector('.map__features');
@@ -8,7 +8,7 @@ const activateForm = () => {
   advertisementForm.classList.remove('ad-form--disabled');
   formFilters.classList.remove('map__filters--disabled');
 
-  advertisementFormFieldsets.forEach((advertisementFormFieldset) => {
+  advertisementFormFieldSets.forEach((advertisementFormFieldset) => {
     advertisementFormFieldset.removeAttribute('disabled', '');
   });
 
@@ -26,7 +26,7 @@ const deactivateForm = () => {
     formFilterFieldElement.setAttribute('disabled', '');
   });
 
-  advertisementFormFieldsets.forEach((advertisementFormFieldset) => {
+  advertisementFormFieldSets.forEach((advertisementFormFieldset) => {
     advertisementFormFieldset.setAttribute('disabled', '');
   });
 
