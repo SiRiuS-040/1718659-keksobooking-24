@@ -5,13 +5,21 @@ import {getData} from './api.js';
 deactivateForm();
 
 const adForm = document.querySelector('.ad-form');
-const addressInput = adForm.querySelector('#address');
+
 const TO_FIXED_RANGE = 5;
 
 const DEFAULT_COORDINATES = {
-  lat: 35.66637,
-  lng: 139.77059,
+  lat: 35.68077,
+  lng: 139.76678,
 };
+
+const addressInput = adForm.querySelector('#address');
+
+const defaultAdressInput = () => {
+  addressInput.value = `${DEFAULT_COORDINATES.lat.toFixed(TO_FIXED_RANGE)}, ${DEFAULT_COORDINATES.lng.toFixed(TO_FIXED_RANGE)}`;
+};
+
+defaultAdressInput();
 
 const ZOOM = 12;
 
@@ -93,8 +101,9 @@ map.on('load', activateAfterMapLoad());
 
 const resetMarkersAndMap = () => {
   mainPinMarker.setLatLng(DEFAULT_COORDINATES);
+
   map.setView(DEFAULT_COORDINATES, ZOOM);
   map.closePopup();
 };
 
-export {createMarker, resetMarkersAndMap};
+export {createMarker, resetMarkersAndMap, defaultAdressInput};

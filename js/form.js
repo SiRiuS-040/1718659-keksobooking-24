@@ -1,4 +1,4 @@
-import {resetMarkersAndMap} from './map.js';
+import {resetMarkersAndMap, defaultAdressInput} from './map.js';
 import {filterForm} from './filter.js';
 import {sendData} from './api.js';
 import {makePopupMessage, errorMessage} from './popup.js';
@@ -137,13 +137,15 @@ const setFormSubmit = (onSuccess) => {
 
 const resetForm = () => {
   adForm.reset();
+  defaultAdressInput();
   filterForm.reset();
   resetMarkersAndMap();
   resetImages();
 };
 
 const clickOnReset = () => {
-  resetButton.addEventListener('click', () => {
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
     resetForm();
   });
 };
