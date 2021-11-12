@@ -4,17 +4,28 @@ import {sendData} from './api.js';
 import {makePopupMessage, errorMessage} from './popup.js';
 import {resetImages} from './avatar.js';
 
+const MAX_PRICE = 1000000;
+const MIN_TITLE_LENGTH = 30;
+const MAX_TITLE_LENGTH = 100;
+
+const HOUSING__MIN_PRICE = {
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000,
+};
+
 const adForm = document.querySelector('.ad-form');
 const adTypeInput = adForm.querySelector('#type');
 const adPriceInput = adForm.querySelector('#price');
 const adRoomsInput = adForm.querySelector('#room_number');
 const adGuestsInput = adForm.querySelector('#capacity');
 const resetButton = adForm.querySelector('.ad-form__reset');
-
-const MIN_TITLE_LENGTH = 30;
-const MAX_TITLE_LENGTH = 100;
-
+const adTimeinInput = adForm.querySelector('#timein');
+const adTimeoutInput = adForm.querySelector('#timeout');
 const adTitleInput = adForm.querySelector('#title');
+
 adTitleInput.minLength = ('MIN_TITLE_LENGTH');
 
 const validateTitle = () => {
@@ -33,16 +44,7 @@ adTitleInput.addEventListener('input', () => {
   validateTitle();
 });
 
-const HOUSING__MIN_PRICE = {
-  bungalow: 0,
-  flat: 1000,
-  hotel: 3000,
-  house: 5000,
-  palace: 10000,
-};
-
 let minPrice = HOUSING__MIN_PRICE[adTypeInput.value];
-const MAX_PRICE = 1000000;
 
 const getMinPrice = (value) => {
   minPrice = HOUSING__MIN_PRICE[value];
@@ -96,9 +98,6 @@ adRoomsInput.addEventListener('input', () => {
 adGuestsInput.addEventListener('input', () => {
   validateCapacity();
 });
-
-const adTimeinInput = adForm.querySelector('#timein');
-const adTimeoutInput = adForm.querySelector('#timeout');
 
 const setTimeIn = () => {
   adTimeoutInput.value = adTimeinInput.value;

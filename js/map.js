@@ -4,25 +4,13 @@ import {getData} from './api.js';
 
 deactivateForm();
 
-const adForm = document.querySelector('.ad-form');
-
 const TO_FIXED_RANGE = 5;
-
 const DEFAULT_COORDINATES = {
   lat: 35.68077,
   lng: 139.76678,
 };
 
-const addressInput = adForm.querySelector('#address');
-
-const defaultAdressInput = () => {
-  addressInput.value = `${DEFAULT_COORDINATES.lat.toFixed(TO_FIXED_RANGE)}, ${DEFAULT_COORDINATES.lng.toFixed(TO_FIXED_RANGE)}`;
-};
-
-defaultAdressInput();
-
 const ZOOM = 12;
-
 const TILE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -31,6 +19,15 @@ const MAIN_ICON = {
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 };
+
+const adForm = document.querySelector('.ad-form');
+const addressInput = adForm.querySelector('#address');
+
+const defaultAdressInput = () => {
+  addressInput.value = `${DEFAULT_COORDINATES.lat.toFixed(TO_FIXED_RANGE)}, ${DEFAULT_COORDINATES.lng.toFixed(TO_FIXED_RANGE)}`;
+};
+
+defaultAdressInput();
 
 const mainPinIcon = L.icon(MAIN_ICON);
 

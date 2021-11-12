@@ -1,5 +1,4 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
-
 const DEFAULT_AVATAR_CONTENT = '<img src="img/muffin-grey.svg" width="40" height="44" alt="Аватар пользователя">';
 
 const avatarChooser = document.querySelector('#avatar');

@@ -1,4 +1,3 @@
-
 const RERENDER_DELAY = 500;
 
 function debounce (callback, timeoutDelay = RERENDER_DELAY) {

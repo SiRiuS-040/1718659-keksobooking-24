@@ -6,7 +6,6 @@ const contentPopupSuccess = document.querySelector('#success').content;
 const messageSuccessTemplate = contentPopupSuccess.querySelector('.success');
 const contentPopupError = document.querySelector('#error').content;
 const messageErrorTemplate = contentPopupError.querySelector('.error');
-
 const successMessage = messageSuccessTemplate.cloneNode(true);
 const errorMessage = messageErrorTemplate.cloneNode(true);
 

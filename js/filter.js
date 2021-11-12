@@ -1,11 +1,5 @@
 import {createMarker} from './map.js';
 
-const filterForm = document.querySelector('.map__filters');
-const typeField = filterForm.querySelector('#housing-type');
-const priceField = filterForm.querySelector('#housing-price');
-const roomsField = filterForm.querySelector('#housing-rooms');
-const guestsField = filterForm.querySelector('#housing-guests');
-
 const ADS_MAX = 10;
 const DEFAULT_VALUE = 'any';
 
@@ -21,6 +15,12 @@ const PriceRange = {
     MIN: 50000,
   },
 };
+
+const filterForm = document.querySelector('.map__filters');
+const typeField = filterForm.querySelector('#housing-type');
+const priceField = filterForm.querySelector('#housing-price');
+const roomsField = filterForm.querySelector('#housing-rooms');
+const guestsField = filterForm.querySelector('#housing-guests');
 
 const filterType = (object) => {
   const typeValue = typeField.value;
