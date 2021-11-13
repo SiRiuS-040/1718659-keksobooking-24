@@ -9,7 +9,8 @@ const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const NUMBER_GUEST_MIN = 0;
 const NUMBER_ROOMS_MAX = 100;
-
+const PRICE_PLACEHOLDER_DEFAULT = '1000';
+const GUESTS_VALUE__DEFAULT = '1';
 
 const HOUSING__MIN_PRICE = {
   bungalow: 0,
@@ -30,6 +31,8 @@ const adTimeOutInput = adForm.querySelector('#timeout');
 const adTitleInput = adForm.querySelector('#title');
 
 adTitleInput.minLength = ('MIN_TITLE_LENGTH');
+adPriceInput.placeholder = PRICE_PLACEHOLDER_DEFAULT;
+adGuestsInput.value = GUESTS_VALUE__DEFAULT;
 
 const validateTitle = () => {
   const valueLength = adTitleInput.value.length;
@@ -60,6 +63,9 @@ const setMinPrice = (value) => {
 };
 
 const validatePrice = () => {
+  adPriceInput.min = HOUSING__MIN_PRICE[adTypeInput.value];
+  adPriceInput.placeholder = adPriceInput.min;
+
   const value = adPriceInput.value;
   if (value < minPrice) {
     adPriceInput.setCustomValidity(`Минимальная цена ${  minPrice} ₽/ночь`);
@@ -122,13 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeIn();
   setTimeOut();
   validateCapacity();
-  validatePrice();
-  validateTitle();
+
+
 });
 
 const setFormSubmit = (onSuccess) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
+    validateTitle();
+    validatePrice();
+
     sendData(
       () => onSuccess(),
       () => makePopupMessage(errorMessage),
@@ -141,6 +150,8 @@ const resetForm = () => {
   adForm.reset();
   defaultAdressInput();
   filterForm.reset();
+  adPriceInput.placeholder = PRICE_PLACEHOLDER_DEFAULT;
+  adGuestsInput.value = GUESTS_VALUE__DEFAULT;
   resetMarkersAndMap();
   resetImages();
 };
