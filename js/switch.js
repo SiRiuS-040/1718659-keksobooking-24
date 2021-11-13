@@ -23,15 +23,15 @@ const deactivateForm = () => {
   formFilters.classList.add('map__filters--disabled');
 
   formFilterFieldElements.forEach((formFilterFieldElement) => {
-    formFilterFieldElement.setAttribute('disabled');
+    formFilterFieldElement.setAttribute('disabled', 'disabled');
   });
 
   advertisementFormFieldSets.forEach((advertisementFormFieldSet) => {
-    advertisementFormFieldSet.setAttribute('disabled');
+    advertisementFormFieldSet.setAttribute('disabled', 'disabled');
   });
 
 
-  formFilterField.setAttribute('disabled');
+  formFilterField.setAttribute('disabled', 'disabled');
 };
 
 export {activateForm, deactivateForm};

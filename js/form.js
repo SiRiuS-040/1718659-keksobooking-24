@@ -7,6 +7,9 @@ import {resetImages} from './avatar.js';
 const MAX_PRICE = 1000000;
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
+const NUMBER_GUEST_MIN = 0;
+const NUMBER_ROOMS_MAX = 100;
+
 
 const HOUSING__MIN_PRICE = {
   bungalow: 0,
@@ -79,9 +82,9 @@ adPriceInput.addEventListener('input', () => {
 });
 
 const validateCapacity = () => {
-  if (adGuestsInput.value === '0' && adRoomsInput.value !== '100') {
+  if (adGuestsInput.value === NUMBER_GUEST_MIN && adRoomsInput.value !== NUMBER_ROOMS_MAX) {
     adGuestsInput.setCustomValidity('Выбранное количество комнат только для гостей!');
-  }  else if (adRoomsInput.value === '100' && adGuestsInput.value > 0) {
+  }  else if (adRoomsInput.value === NUMBER_ROOMS_MAX && adGuestsInput.value > NUMBER_GUEST_MIN) {
     adGuestsInput.setCustomValidity('В данных помещеиях нельзя размещать гостей!');
   } else if (adGuestsInput.value > adRoomsInput.value) {
     adGuestsInput.setCustomValidity('Слишком много гостей');
