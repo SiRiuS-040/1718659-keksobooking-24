@@ -72,8 +72,4 @@ const getAdvertisementMarks = (dataArray) => {
   return adsClone;
 };
 
-const clearAdvertisementMarks = () => {
-  popup.innerHTML = '';
-};
-
-export {getAdvertisementMarks, clearAdvertisementMarks};
+export {getAdvertisementMarks};
