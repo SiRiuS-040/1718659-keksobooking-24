@@ -1,7 +1,7 @@
 import {resetMarkersAndMap, defaultAdressInput} from './map.js';
 import {filterForm} from './filter.js';
 import {sendData} from './api.js';
-import {makePopupMessage, errorMessage} from './popup.js';
+import {makePopupMessage, errorMessage, successMessage} from './popup.js';
 import {resetImages} from './avatar.js';
 
 const MAX_PRICE = 1000000;
@@ -132,20 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-const setFormSubmit = (onSuccess) => {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    validateTitle();
-    validatePrice();
-
-    sendData(
-      () => onSuccess(),
-      () => makePopupMessage(errorMessage),
-      new FormData(evt.target),
-    );
-  });
-};
-
 const resetForm = () => {
   adForm.reset();
   defaultAdressInput();
@@ -155,6 +141,22 @@ const resetForm = () => {
   resetMarkersAndMap();
   resetImages();
 };
+
+const setFormSubmit = () => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    validateTitle();
+    validatePrice();
+
+    sendData(
+      () => {makePopupMessage(successMessage), resetForm();},
+      () => makePopupMessage(errorMessage),
+      new FormData(evt.target),
+    );
+  });
+};
+
+setFormSubmit();
 
 const clickOnReset = () => {
   resetButton.addEventListener('click', (evt) => {

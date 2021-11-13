@@ -1,5 +1,3 @@
-import {makePopupMessage, successMessage, errorMessage} from './popup.js';
-
 const URL_DATA_GET = 'https://24.javascript.pages.academy/keksobooking/data';
 const URL_DATA_POST = 'https://24.javascript.pages.academy/keksobooking';
 
@@ -33,10 +31,10 @@ const sendData = (onSuccess, onFail, body) => {
       method: 'POST',
       body,
     },
-  ).then((response) => response.ok ? onSuccess(makePopupMessage(successMessage)) : onFail(makePopupMessage(errorMessage)),
+  ).then((response) => response.ok ? onSuccess() : onFail(),
   )
     .catch(() => {
-      onFail(makePopupMessage(errorMessage));
+      onFail();
     });
 };
 

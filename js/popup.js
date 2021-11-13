@@ -20,7 +20,6 @@ const makePopupMessage = (messageType) =>  {
   }, {once: true});
 };
 
-
 const makeLoadErrorMessage = () =>  {
   const message = messageErrorTemplate.cloneNode(true);
   message.querySelector('.error__message').textContent = 'Не удалось загрузить данные с сервера :(';
