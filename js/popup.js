@@ -23,7 +23,7 @@ const makePopupMessage = (messageType) =>  {
 
 const makeLoadErrorMessage = () =>  {
   const message = messageErrorTemplate.cloneNode(true);
-  message.querySelector('.error__message').textContent = 'Что то сломалось :(';
+  message.querySelector('.error__message').textContent = 'Не удалось загрузить данные с сервера :(';
   message.querySelector('.error__button').textContent = 'Перезагрузка страницы';
   body.appendChild(message);
   message.querySelector('.error__button').addEventListener('click', ()=> {

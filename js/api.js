@@ -1,4 +1,4 @@
-import {makePopupMessage, successMessage, errorMessage, makeLoadErrorMessage} from './popup.js';
+import {makePopupMessage, successMessage, errorMessage} from './popup.js';
 
 const URL_DATA_GET = 'https://24.javascript.pages.academy/keksobooking/data';
 const URL_DATA_POST = 'https://24.javascript.pages.academy/keksobooking';
@@ -22,7 +22,7 @@ const getData = (onSuccess, onError) => {
       onSuccess(data);
     })
     .catch(() => {
-      onError(makeLoadErrorMessage());
+      onError();
     });
 };
 
