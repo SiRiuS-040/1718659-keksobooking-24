@@ -11,6 +11,8 @@ const popup = similarAdsTemplate.querySelector('.popup');
 
 const getAdvertisementMarks = (dataArray) => {
   const adsClone = popup.cloneNode(true);
+  const featuresContainer = adsClone.querySelector('.popup__features');
+  const featureList = featuresContainer.querySelectorAll('.popup__feature');
 
   adsClone.querySelector('.popup__title').textContent = dataArray.offer.title;
   adsClone.querySelector('.popup__text--address').textContent = dataArray.offer.address;
@@ -19,9 +21,6 @@ const getAdvertisementMarks = (dataArray) => {
   adsClone.querySelector('.popup__text--capacity').textContent = `${dataArray.offer.rooms } комнаты для ${dataArray.offer.guests} гостей`;
   adsClone.querySelector('.popup__text--time').textContent = `Заезд после ${ dataArray.offer.checkin}, выезд до ${ dataArray.offer.checkout}`;
   adsClone.querySelector('.popup__avatar').src = dataArray.author.avatar;
-
-  const featuresContainer = adsClone.querySelector('.popup__features');
-  const featureList = featuresContainer.querySelectorAll('.popup__feature');
 
   const getFeatures = () => {
     const adsFeatures = dataArray.offer.features;
@@ -48,7 +47,7 @@ const getAdvertisementMarks = (dataArray) => {
     adsClone.querySelector('.popup__description').textContent = dataArray.offer.description;
   }
 
-  const getPhotoes = () => {
+  const getPhotos = () => {
     const adsPhotos = dataArray.offer.photos;
     const photoContainer = adsClone.querySelector('.popup__photos');
 
@@ -68,7 +67,7 @@ const getAdvertisementMarks = (dataArray) => {
     }
   };
 
-  getPhotoes();
+  getPhotos();
 
   return adsClone;
 };

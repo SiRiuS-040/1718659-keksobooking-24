@@ -22,8 +22,8 @@ const adPriceInput = adForm.querySelector('#price');
 const adRoomsInput = adForm.querySelector('#room_number');
 const adGuestsInput = adForm.querySelector('#capacity');
 const resetButton = adForm.querySelector('.ad-form__reset');
-const adTimeinInput = adForm.querySelector('#timein');
-const adTimeoutInput = adForm.querySelector('#timeout');
+const adTimeInInput = adForm.querySelector('#timein');
+const adTimeOutInput = adForm.querySelector('#timeout');
 const adTitleInput = adForm.querySelector('#title');
 
 adTitleInput.minLength = ('MIN_TITLE_LENGTH');
@@ -100,18 +100,18 @@ adGuestsInput.addEventListener('input', () => {
 });
 
 const setTimeIn = () => {
-  adTimeoutInput.value = adTimeinInput.value;
+  adTimeOutInput.value = adTimeInInput.value;
 };
 
 const setTimeOut = () => {
-  adTimeinInput.value = adTimeoutInput.value;
+  adTimeInInput.value = adTimeOutInput.value;
 };
 
-adTimeinInput.addEventListener('input', () => {
+adTimeInInput.addEventListener('input', () => {
   setTimeIn();
 });
 
-adTimeoutInput.addEventListener('input', () => {
+adTimeOutInput.addEventListener('input', () => {
   setTimeOut();
 });
 

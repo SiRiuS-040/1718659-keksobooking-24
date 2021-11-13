@@ -1,7 +1,6 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 
 const body = document.querySelector('body');
-
 const contentPopupSuccess = document.querySelector('#success').content;
 const messageSuccessTemplate = contentPopupSuccess.querySelector('.success');
 const contentPopupError = document.querySelector('#error').content;

@@ -2,8 +2,6 @@ import {getAdvertisementMarks} from './ads-cards.js';
 import {activateForm, deactivateForm} from './switch.js';
 import {getData} from './api.js';
 
-deactivateForm();
-
 const TO_FIXED_RANGE = 5;
 const DEFAULT_COORDINATES = {
   lat: 35.68077,
@@ -22,6 +20,8 @@ const MAIN_ICON = {
 
 const adForm = document.querySelector('.ad-form');
 const addressInput = adForm.querySelector('#address');
+
+deactivateForm();
 
 const defaultAdressInput = () => {
   addressInput.value = `${DEFAULT_COORDINATES.lat.toFixed(TO_FIXED_RANGE)}, ${DEFAULT_COORDINATES.lng.toFixed(TO_FIXED_RANGE)}`;
@@ -98,7 +98,6 @@ map.on('load', activateAfterMapLoad());
 
 const resetMarkersAndMap = () => {
   mainPinMarker.setLatLng(DEFAULT_COORDINATES);
-
   map.setView(DEFAULT_COORDINATES, ZOOM);
   map.closePopup();
 };

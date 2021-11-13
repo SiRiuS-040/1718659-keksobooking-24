@@ -8,14 +8,14 @@ const activateForm = () => {
   advertisementForm.classList.remove('ad-form--disabled');
   formFilters.classList.remove('map__filters--disabled');
 
-  advertisementFormFieldSets.forEach((advertisementFormFieldset) => {
-    advertisementFormFieldset.removeAttribute('disabled', '');
+  advertisementFormFieldSets.forEach((advertisementFormFieldSet) => {
+    advertisementFormFieldSet.removeAttribute('disabled');
   });
 
   formFilterFieldElements.forEach((formFilterFieldElement) => {
-    formFilterFieldElement.removeAttribute('disabled', '');
+    formFilterFieldElement.removeAttribute('disabled');
   });
-  formFilterField.removeAttribute('disabled', '');
+  formFilterField.removeAttribute('disabled');
 };
 
 const deactivateForm = () => {
@@ -23,15 +23,15 @@ const deactivateForm = () => {
   formFilters.classList.add('map__filters--disabled');
 
   formFilterFieldElements.forEach((formFilterFieldElement) => {
-    formFilterFieldElement.setAttribute('disabled', '');
+    formFilterFieldElement.setAttribute('disabled');
   });
 
-  advertisementFormFieldSets.forEach((advertisementFormFieldset) => {
-    advertisementFormFieldset.setAttribute('disabled', '');
+  advertisementFormFieldSets.forEach((advertisementFormFieldSet) => {
+    advertisementFormFieldSet.setAttribute('disabled');
   });
 
 
-  formFilterField.setAttribute('disabled', '');
+  formFilterField.setAttribute('disabled');
 };
 
 export {activateForm, deactivateForm};
