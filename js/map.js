@@ -1,6 +1,5 @@
 import {getAdvertisementMarks} from './ads-cards.js';
-import {activateForm, deactivateForm} from './switch.js';
-import {getData} from './api.js';
+import {deactivateForm} from './switch.js';
 
 const TO_FIXED_RANGE = 5;
 const DEFAULT_COORDINATES = {
@@ -86,15 +85,6 @@ const createMarker = (adPoints) => {
       .bindPopup(getAdvertisementMarks(adPoints[i]));
   }
 };
-
-const activateAfterMapLoad = () => {
-  activateForm();
-  getData((advertisements) => {
-    createMarker(advertisements);
-  });
-};
-
-map.on('load', activateAfterMapLoad());
 
 const resetMarkersAndMap = () => {
   mainPinMarker.setLatLng(DEFAULT_COORDINATES);
