@@ -66,25 +66,27 @@ mainPinMarker.on('drag', (evt) => {
 
 const markerGroup = L.layerGroup().addTo(map);
 
-const createMarker = (adPoints) => {
+const createMarker = (advertisements) => {
   markerGroup.clearLayers();
-  for (let i = 0; i < adPoints.length; i++) {
-    const lat = adPoints[i].location.lat;
-    const lng = adPoints[i].location.lng;
-    const icon = L.icon(AD_ICON);
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon,
-      },
-    );
-    marker
-      .addTo(markerGroup)
-      .bindPopup(getAdvertisementMarks(adPoints[i]));
-  }
+  advertisements
+    .forEach((advertisement) => {
+
+      const lat = advertisement.location.lat;
+      const lng = advertisement.location.lng;
+      const icon = L.icon(AD_ICON);
+      const marker = L.marker(
+        {
+          lat,
+          lng,
+        },
+        {
+          icon,
+        },
+      );
+      marker
+        .addTo(markerGroup)
+        .bindPopup(getAdvertisementMarks(advertisement));
+    });
 };
 
 const resetMarkersAndMap = () => {
