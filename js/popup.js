@@ -12,13 +12,18 @@ const errorMessage = messageErrorTemplate.cloneNode(true);
 
 const makePopupMessage = (messageType) =>  {
   body.appendChild(messageType);
-  messageType.addEventListener('click', () => {
-    messageType.remove();
-  }, {once: true});
-  document.addEventListener('keydown', (evt) => {
+
+  const onKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       messageType.remove();
     }
+  };
+
+  document.addEventListener('keydown', onKeydown, {once: true});
+
+  messageType.addEventListener('click', () => {
+    messageType.remove();
+    document.removeEventListener('keydown', onKeydown);
   }, {once: true});
 };
 
