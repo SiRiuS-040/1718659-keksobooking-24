@@ -1,6 +1,7 @@
 import {isEscapeKey} from './util.js';
 
 const ALERT_SHOW_TIME = 10000;
+const LOAD_ERROR_TEXT = 'Не удалось загрузить объявления с сервера :(';
 
 const body = document.querySelector('body');
 const contentPopupSuccess = document.querySelector('#success').content;
@@ -39,7 +40,7 @@ const makeLoadErrorMessage = () =>  {
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = 'orange';
 
-  alertContainer.textContent = 'Не удалось загрузить объявления с сервера :(';
+  alertContainer.textContent = LOAD_ERROR_TEXT;
 
   document.body.append(alertContainer);
 
