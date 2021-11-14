@@ -9,6 +9,5 @@ function debounce (callback, timeoutDelay = RERENDER_DELAY) {
 }
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
-const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {isEscapeKey, isEnterKey, debounce};
+export {isEscapeKey, debounce};

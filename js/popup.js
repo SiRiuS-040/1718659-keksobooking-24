@@ -1,4 +1,6 @@
-import {isEscapeKey, isEnterKey} from './util.js';
+import {isEscapeKey} from './util.js';
+
+const ALERT_SHOW_TIME = 10000;
 
 const body = document.querySelector('body');
 const contentPopupSuccess = document.querySelector('#success').content;
@@ -21,20 +23,24 @@ const makePopupMessage = (messageType) =>  {
 };
 
 const makeLoadErrorMessage = () =>  {
-  const message = messageErrorTemplate.cloneNode(true);
-  message.querySelector('.error__message').textContent = 'Не удалось загрузить данные с сервера :(';
-  message.querySelector('.error__button').textContent = 'Перезагрузка страницы';
-  body.appendChild(message);
-  message.querySelector('.error__button').addEventListener('click', ()=> {
-    location.reload();
-    return false;
-  }, {once: true});
-  document.addEventListener('keydown', (evt) => {
-    if (isEnterKey(evt)) {
-      location.reload();
-      return false;
-    }
-  }, {once: true});
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = '20px';
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '28px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'orange';
+
+  alertContainer.textContent = 'Не удалось загрузить объявления с сервера :(';
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
 };
 
 export {makePopupMessage, successMessage, errorMessage, makeLoadErrorMessage};
