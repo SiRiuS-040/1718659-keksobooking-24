@@ -6,11 +6,14 @@ const formFilterField = formFilters.querySelector('.map__features');
 
 const activateForm = () => {
   advertisementForm.classList.remove('ad-form--disabled');
-  formFilters.classList.remove('map__filters--disabled');
 
   advertisementFormFieldSets.forEach((advertisementFormFieldSet) => {
     advertisementFormFieldSet.removeAttribute('disabled');
   });
+};
+
+const activateFilters = () => {
+  formFilters.classList.remove('map__filters--disabled');
 
   formFilterFieldElements.forEach((formFilterFieldElement) => {
     formFilterFieldElement.removeAttribute('disabled');
@@ -34,5 +37,5 @@ const deactivateForm = () => {
   formFilterField.setAttribute('disabled', 'disabled');
 };
 
-export {activateForm, deactivateForm};
+export {activateForm, activateFilters, deactivateForm};
 

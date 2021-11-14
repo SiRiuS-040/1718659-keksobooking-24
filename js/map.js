@@ -1,5 +1,5 @@
 import {getAdvertisementMarks} from './ads-cards.js';
-import {deactivateForm} from './switch.js';
+import {deactivateForm, activateForm} from './switch.js';
 
 const TO_FIXED_RANGE = 5;
 const DEFAULT_COORDINATES = {
@@ -17,6 +17,12 @@ const MAIN_ICON = {
   iconAnchor: [26, 52],
 };
 
+const AD_ICON = {
+  iconUrl: 'img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+};
+
 const adForm = document.querySelector('.ad-form');
 const addressInput = adForm.querySelector('#address');
 
@@ -30,14 +36,9 @@ defaultAdressInput();
 
 const mainPinIcon = L.icon(MAIN_ICON);
 
-const AD_ICON = {
-  iconUrl: 'img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-};
-
 const map = L.map('map-canvas')
   .on('load', () => {
+    activateForm();
   })
   .setView(DEFAULT_COORDINATES, ZOOM);
 
